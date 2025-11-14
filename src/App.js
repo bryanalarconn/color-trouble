@@ -1,21 +1,23 @@
-  import React from 'react';
-  import Webcam from 'react-webcam';
+import React, { useState } from "react";
+import WebcamImage from "./WebcamImage";
+import "./App.css";
 
-  const WebcamDisplay = () => {
-    const videoConstraints = {
-      facingMode: "selfie" // "user" for front camera, "environment" for rear camera
-    };
+function App() {
+  const [captured, setCaptured] = useState(null);
 
-    return (
-      <div>
-        <h2>Live Webcam Feed</h2>
-        <Webcam
-          height={480}
-          width={640}
-          videoConstraints={videoConstraints}
-        />
-      </div>
-    );
-  };
-
-  export default WebcamDisplay;
+  return (
+    <div className="App">
+      <h1>Color Trouble</h1>
+      <WebcamImage onCapture={setCaptured} />
+      {captured && (
+        <>
+          <h2>Captured Image</h2>
+          <img src={captured}
+            alt="Captured"
+          />
+       </>
+      )}
+    </div>
+  );
+}
+export default App;
