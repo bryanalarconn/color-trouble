@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+  import React from 'react';
+  import Webcam from 'react-webcam';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const WebcamDisplay = () => {
+    const videoConstraints = {
+      facingMode: "selfie" // "user" for front camera, "environment" for rear camera
+    };
 
-export default App;
+    return (
+      <div>
+        <h2>Live Webcam Feed</h2>
+        <Webcam
+          height={480}
+          width={640}
+          videoConstraints={videoConstraints}
+        />
+      </div>
+    );
+  };
+
+  export default WebcamDisplay;
