@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-function WebcamImage(onCapture) {
+function WebcamImage({onCapture}) {
   const [img, setImg] = useState(null);
   const webcamRef = useRef(null);
 
@@ -12,7 +12,7 @@ function WebcamImage(onCapture) {
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
 
-    if(onCapture){  
+    if(typeof onCapture === 'function') {  
     onCapture(imageSrc);
     }
   }, [onCapture]);
@@ -31,7 +31,6 @@ function WebcamImage(onCapture) {
         </>
       ) : (
         <>
-          <img src={img} alt="screenshot" />
           <button onClick={() => {
             setImg(null)
             if(onCapture) onCapture(null);
