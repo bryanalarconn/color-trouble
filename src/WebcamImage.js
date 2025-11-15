@@ -27,7 +27,9 @@ function WebcamImage({onCapture}) {
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
           />
+          <div>
           <button onClick={capture}>Capture photo</button>
+          </div>
         </>
       ) : (
         <>
