@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [captured, setCaptured] = useState(null);
   const [colors, setColors] = useState([]);
-  const hiddenImgRef = React.useRef(null);
+  const hiddenImgRef = useRef(null);
 
   useEffect(() => {
     if (!captured) return;
