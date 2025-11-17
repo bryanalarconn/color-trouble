@@ -3,6 +3,7 @@ import WebcamImage from "./WebcamImage";
 import ColorThief from "color-thief-browser";
 import "./App.css";
 
+// Helper function to convert RGB to HEX
 const rgbToHex = (r, g, b) => {
   return (
     "#" +
@@ -14,6 +15,7 @@ const rgbToHex = (r, g, b) => {
       .join("")
   );
 };
+// Helper function to copy text to clipboard
 const copyText = (text) => {
   if (!text) return;
   navigator.clipboard.writeText(text);
@@ -27,6 +29,7 @@ function App() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const hiddenImgRef = useRef(null);
 
+  // Extract colors when a new image is captured
   useEffect(() => {
     if (!captured) return;
 
@@ -47,14 +50,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Color Trouble</h1>
-
-      <WebcamImage onCapture={setCaptured} />
-      <img ref={hiddenImgRef} alt="Captured" style={{ display: "none" }} />
-
-      <div style={{ marginBottom: 20 }}>
+      <h1>Color Trouble</h1> {/*Title of the app }} */}
+      <WebcamImage onCapture={setCaptured} />{" "}
+      {/*Webcam component to capture image*/}
+      <img ref={hiddenImgRef} alt="Captured" style={{ display: "none" }} />{" "}
+      {/*Hidden image for color extraction*/}
+      {/* Format selection buttons */}
+      <div style={{ margin: 10 }}>
         <span style={{ marginRight: 10 }}>Display format:</span>
 
+        {/* HEX Button */}
         <button
           onClick={() => setFormat("hex")}
           style={{
@@ -69,6 +74,7 @@ function App() {
           HEX
         </button>
 
+        {/* RGB Button */}
         <button
           onClick={() => setFormat("rgb")}
           style={{
@@ -82,63 +88,72 @@ function App() {
           RGB
         </button>
       </div>
-
+      {/* Display extracted colors */}
       <div
         style={{
           display: "flex",
           gap: 10,
-          marginTop: 20,
           justifyContent: "center",
         }}
       >
-        {colors.map((c, i) => {
-          const [r, g, b] = c;
-          const hex = rgbToHex(r, g, b);
-          const rgb = `rgb(${r}, ${g}, ${b})`;
-          const text = format === "hex" ? hex : rgb;
+        {/* Only show colors if available */}
+        {colors.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              gap: 16,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {/* Map through colors and display each */}
+            {colors.map((c, i) => {
+              const [r, g, b] = c;
+              const hex = rgbToHex(r, g, b);
+              const rgb = `rgb(${r}, ${g}, ${b})`;
+              const text = format === "hex" ? hex : rgb;
 
+              // Auto choose white or black text
+              const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+              const textColor = brightness > 140 ? "#000" : "#fff";
 
-          return (
-            <div
-              key={i}
-              style={{
-                width: 120,
-                padding: 10,
-                backgroundColor: "#fafafa",
-                borderRadius: 8,
-                border: "2px solid #000",
-                textAlign: "center",
-                position: "relative",
-              }}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: rgb,
-                  borderRadius: 8,
-                }}
-              />
-              {hoveredIndex === i && (
-                <div
-                  style={{
-                    marginTop: 8,
-                    fontSize: 14,
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
-                  onClick={() => copyText(text)}
-                >
-                  {text}
+              // Return the color box with text on hover
+              return (
+                <div key={i} style={{ width: 100 }}>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: 60,
+                      backgroundColor: rgb,
+                      borderRadius: 6,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      position: "relative",
+                    }}
+                    onMouseEnter={() => setHoveredIndex(i)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    onClick={() => copyText(text)}
+                  >
+                    {/* Text inside the color box */}
+                    {hoveredIndex === i && (
+                      <span
+                        style={{
+                          fontSize: 14,
+                          color: textColor,
+                          userSelect: "none",
+                        }}
+                      >
+                        {text}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              )}
-              {" "}
-
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
