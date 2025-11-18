@@ -27,6 +27,8 @@ function App() {
   const [colors, setColors] = useState([]);
   const [format, setFormat] = useState("hex");
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [flash, setFlash] = useState(false);
+
   const hiddenImgRef = useRef(null);
 
   // Extract colors when a new image is captured
@@ -51,7 +53,15 @@ function App() {
   return (
     <div className="App">
       <h1>Color Trouble</h1> {/*Title of the app }} */}
-      <WebcamImage onCapture={setCaptured} />{" "}
+      <WebcamImage
+        onCapture={(img, { flash: doFlash } = {}) => {
+          setCaptured(img);
+          if (doFlash) {
+            setFlash(true);
+            setTimeout(() => setFlash(false), 100);
+          }
+        }}
+      />{" "}
       {/*Webcam component to capture image*/}
       <img ref={hiddenImgRef} alt="Captured" style={{ display: "none" }} />{" "}
       {/*Hidden image for color extraction*/}
@@ -88,6 +98,22 @@ function App() {
           RGB
         </button>
       </div>
+      {flash && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "white",
+            opacity: 0.85,
+            zIndex: 9999,
+            pointerEvents: "none",
+            transition: "opacity 0.15s ease-out",
+          }}
+        ></div>
+      )}
       {/* Display extracted colors */}
       <div
         style={{

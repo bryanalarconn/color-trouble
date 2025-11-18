@@ -11,7 +11,7 @@ function WebcamImage({ onCapture }) {
 
     // Pass the captured image to the parent component via the onCapture prop
     if (onCapture && typeof onCapture === "function") {
-      onCapture(imageSrc);
+      onCapture(imageSrc, { flash: true });
     }
   }, [onCapture]);
 
