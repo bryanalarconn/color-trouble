@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Color Trouble</h1> {/*Title of the app }} */}
+      <h1 className="app-title">Color Trouble</h1>{/*Title of the app }} */}
       <WebcamImage
         onCapture={(img, { flash: doFlash } = {}) => {
           setCaptured(img);
@@ -66,38 +66,26 @@ function App() {
       <img ref={hiddenImgRef} alt="Captured" style={{ display: "none" }} />{" "}
       {/*Hidden image for color extraction*/}
       {/* Format selection buttons */}
-      <div style={{ margin: 10 }}>
-        <span style={{ marginRight: 10 }}>Display format:</span>
-
-        {/* HEX Button */}
-        <button
-          onClick={() => setFormat("hex")}
-          style={{
-            marginRight: 10,
-            padding: "6px 12px",
-            backgroundColor: format === "hex" ? "#222" : "#ddd",
-            color: format === "hex" ? "#fff" : "#000",
-            borderRadius: 8,
-            cursor: "pointer",
-          }}
-        >
-          HEX
-        </button>
-
-        {/* RGB Button */}
-        <button
-          onClick={() => setFormat("rgb")}
-          style={{
-            padding: "6px 12px",
-            backgroundColor: format === "rgb" ? "#222" : "#ddd",
-            color: format === "rgb" ? "#fff" : "#000",
-            borderRadius: 8,
-            cursor: "pointer",
-          }}
-        >
-          RGB
-        </button>
+      <div className="format-wrapper">
+        <span className="format-label">Display format:</span>
+        <div className="format-toggle">
+          <button
+            onClick={() => setFormat("hex")}
+            className={`format-button ${format === "hex" ? "active" : ""}`}
+            aria-pressed={format === "hex"}
+          >
+            HEX
+          </button>
+          <button
+            onClick={() => setFormat("rgb")}
+            className={`format-button ${format === "rgb" ? "active" : ""}`}
+            aria-pressed={format === "rgb"}
+          >
+            RGB
+          </button>
+        </div>
       </div>
+
       {flash && (
         <div
           style={{

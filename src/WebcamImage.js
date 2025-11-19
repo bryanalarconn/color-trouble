@@ -14,27 +14,16 @@ function WebcamImage({ onCapture }) {
       onCapture(imageSrc, { flash: true });
     }
   }, [onCapture]);
-
   return (
-    <div className="Container">
-      {/* Webcam component to display the webcam feed */}
-      <Webcam mirrored={true} ref={webcamRef} screenshotFormat="image/jpeg" />
-      {/* Button to capture the current frame */}
-      <div style={{ margin: 20 }}>
-        <button
-          onClick={() => capture()}
-          style={{
-            marginRight: 10,
-            fontWeight: "bold",
-            padding: "6px 12px",
-            borderRadius: 8,
-            cursor: "pointer",
-          }}
-        >
-          Capture Colors
-        </button>
-      </div>
+  //will call this classname in the css
+  <div className="webcam-wrapper">
+    <div className="camera-box">
+      <Webcam mirrored={true} ref={webcamRef} screenshotFormat="image/jpeg" className="camera-feed"/>
     </div>
+    <button className="capture-btn" onClick={capture}>
+      Capture Colors
+    </button>
+  </div>
   );
 }
 

@@ -11,3 +11,88 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*-----------------------------------------------------------------------------------*/
+.webcam-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+/*creates rounded webcam frame */
+.camera-box {
+  width: 700px;
+  height: 500px;
+  border-radius: 25px;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(140%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/*make the webcam fill the rounded box */
+.camera-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*capture button */
+.capture-btn {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: #1e90ff;
+  color: white;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+/*will allow a hover and background changes when user hovers over*/
+.capture-btn:hover {
+  background: #1476d1;
+}
+/*-----------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------*/
+.format-wrapper {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.format-label {
+  color: #ffffff;
+  font-size: 14px;
+}
+/*this creates a glassy segmented control container */
+.format-toggle {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+/*the only toggle button*/
+.format-button {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: #f5f5f5;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.format-button:hover {
+  transform: translateY(-1px);
+}
+/*the button you are selecting then give it a white background and the word is black letters*/
+.format-button.active {
+  background: #ffffff;
+  color: #111827;
+}
+/*-----------------------------------------------------------------------------------*/

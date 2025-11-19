@@ -2,31 +2,26 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-
-  background: linear-gradient(
-      145deg,
-      #0ab04c 0%,
-      #0ab04c 12%,
-      #35c46a 18%,
-      #0ab04c 28%,
-      #079d44 40%,
-      #00773d 55%,
-      #005c80 70%,
-      #004b93 100%
-  );
-
+  background: linear-gradient(135deg, #1da980 0%, #0f6c9a 100%);
   background-attachment: fixed;
 }
 
-
-
 /* Optional: center content & add spacing */
 .App {
-  padding: 20px;
+  padding-bottom: 20px;
   text-align: center;
 }
-
 /* Optional: make buttons/boxes stand out */
 button {
   border: none;
 }
+/*editing the title of the app*/
+.app-title {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
