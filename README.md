@@ -1,71 +1,116 @@
-# Getting Started with Create React App
+# Color Trouble – Real-Time Color Extraction Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Color Trouble is a React-based web application that captures frames from a webcam stream and extracts dominant colors using image processing techniques. The system provides an interactive interface for analyzing color composition in real-time, with configurable output formats and a clean user interface inspired by Sprite’s iconic gradient aesthetic.
 
-## Available Scripts
+This project demonstrates proficiency in client-side computer vision, state-driven UI design, and front-end software engineering practices using modern JavaScript frameworks.
 
-In the project directory, you can run:
+## 1. Overview
 
-### `npm start`
+Color Trouble enables users to capture a single frame from a live webcam feed and automatically extract its six most dominant colors. These colors are presented as interactive swatches that reveal their values upon hover. Users may toggle between HEX and RGB formats, and clicking a swatch copies the value to the clipboard for immediate use in design or analysis workflows.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application operates entirely on the client side and is optimized for both desktop and mobile environments when deployed over HTTPS.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 2. Features
 
-### `npm test`
+### Real-Time Webcam Stream
+- Continuous video feed using react-webcam.
+- The live stream remains uninterrupted during capture.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Color Extraction
+- Dominant colors extracted using color-thief-browser.
+- Hidden <img> element used to process captured frames without disrupting the UI.
 
-### `npm run build`
+### Interactive Swatch Display
+- Mouse hover reveals numeric color values.
+- Automatic text-contrast adjustment based on luminance.
+- One-click copying for seamless integration into design workflows.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Format Toggle
+- Users can choose to display color values in either HEX or RGB format.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Flash Feedback Effect
+- A brief screen flash simulates a snapshot, providing immediate visual feedback to the user.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Custom Styling
+- Background utilizes a diagonal Sprite-can-inspired gradient, offering a modern and visually appealing aesthetic.
 
-### `npm run eject`
+## 3. Technology Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Component | Technology |
+|----------|------------|
+| Framework | React (Create React App) |
+| Video Input | react-webcam |
+| Color Analysis | color-thief-browser |
+| Styling | Custom CSS |
+| Deployment | Vercel |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 4. Installation and Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the repository:
+```
+git clone https://github.com/YOUR_USERNAME/color-trouble.git
+cd color-trouble
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Install dependencies:
+```
+npm install
+```
 
-## Learn More
+Start the development server:
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 5. Deployment Instructions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is optimized for deployment on Vercel, which provides:
+- Automatic HTTPS  
+- CI/CD integration with GitHub  
+- Global CDN performance  
 
-### Code Splitting
+Deploy:
+1. Push the project to GitHub.
+2. Visit https://vercel.com/new
+3. Select the repository.
+4. Deploy.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 6. Application Architecture
 
-### Analyzing the Bundle Size
+```
+src/
+│
+├── App.js
+├── WebcamImage.js
+├── App.css
+└── index.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 7. How Color Extraction Works
 
-### Making a Progressive Web App
+1. The user selects Capture Colors.
+2. react-webcam returns a base64 JPEG frame.
+3. The frame is assigned to a hidden <img> element.
+4. color-thief-browser processes the image.
+5. A palette of six RGB values is returned.
+6. Values are formatted and displayed interactivity.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 8. Future Enhancements
 
-### Advanced Configuration
+- Tooltip-based feedback
+- Continuous real-time sampling
+- Color naming dictionaries
+- Palette export
+- Accessibility improvements
+- Automated testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 9. License
 
-### Deployment
+MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 10. Author
+Bryan Alarcon
+Christian Hernandez
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# color-trouble
+Bryan Alarcon  
+Christian Hernandez
