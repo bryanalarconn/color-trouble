@@ -15,12 +15,6 @@ const rgbToHex = (r, g, b) => {
       .join("")
   );
 };
-// Helper function to copy text to clipboard
-const copyText = (text) => {
-  if (!text) return;
-  navigator.clipboard.writeText(text);
-  alert(`Copied: ${text}`);
-};
 
 function App() {
   const [captured, setCaptured] = useState(null);
@@ -28,8 +22,17 @@ function App() {
   const [format, setFormat] = useState("hex");
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [flash, setFlash] = useState(false);
+  const [copyToast, setCopyToast] = useState(null);
 
   const hiddenImgRef = useRef(null);
+
+  // Helper function to copy text to clipboard
+  const copyText = (text) => {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    setCopyToast(text);
+    setTimeout(() => setCopyToast(null), 2000);
+  };
 
   // Extract colors when a new image is captured
   useEffect(() => {
@@ -52,7 +55,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="app-title">Color Trouble</h1>{/*Title of the app }} */}
+      <h1 className="app-title">Color Trouble</h1>
+      {/*Title of the app }} */}
       <WebcamImage
         onCapture={(img, { flash: doFlash } = {}) => {
           setCaptured(img);
@@ -85,7 +89,6 @@ function App() {
           </button>
         </div>
       </div>
-
       {flash && (
         <div
           style={{
@@ -101,6 +104,12 @@ function App() {
             transition: "opacity 0.15s ease-out",
           }}
         ></div>
+      )}
+      {/* Copy toast notification */}
+      {copyToast && (
+        <div className="copy-toast">
+          Copied: {copyToast}
+        </div>
       )}
       {/* Display extracted colors */}
       <div
