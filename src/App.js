@@ -56,7 +56,6 @@ function App() {
   return (
     <div className="App">
       <h1 className="app-title">Color Trouble</h1>
-      {/*Title of the app }} */}
       <WebcamImage
         onCapture={(img, { flash: doFlash } = {}) => {
           setCaptured(img);
