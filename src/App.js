@@ -24,6 +24,7 @@ function App() {
   const [flash, setFlash] = useState(false);
   const [copyToast, setCopyToast] = useState(null);
   const [colorHistory, setColorHistory] = useState([]);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   const hiddenImgRef = useRef(null);
 
@@ -185,8 +186,15 @@ function App() {
         )}
       </div>
       
-      {colorHistory.length > 0 && (
-        <div className="history-sidebar">
+      {/* Color History Sidebar */}
+      <div className={`history-sidebar ${historyOpen ? 'open' : ''}`}>
+        <button 
+          className="history-tab"
+          onClick={() => setHistoryOpen(!historyOpen)}
+        >
+          {historyOpen ? '→' : '←'} History
+        </button>
+        <div className="history-content">
           <div className="history-header">
             <h3>Color History</h3>
             <button 
@@ -197,32 +205,38 @@ function App() {
             </button>
           </div>
           <div className="history-list">
-            {colorHistory.map((entry) => (
-              <div key={entry.id} className="history-entry">
-                <div className="history-time">{entry.timestamp}</div>
-                <div className="history-colors">
-                  {entry.colors.map((c, i) => {
-                    const [r, g, b] = c;
-                    const hex = rgbToHex(r, g, b);
-                    const rgb = `rgb(${r}, ${g}, ${b})`;
-                    const text = format === "hex" ? hex : rgb;
-                    
-                    return (
-                      <div
-                        key={i}
-                        className="history-color-box"
-                        style={{ backgroundColor: rgb }}
-                        onClick={() => copyText(text)}
-                        title={text}
-                      />
-                    );
-                  })}
-                </div>
+            {colorHistory.length === 0 ? (
+              <div className="history-empty">
+                Capture some colors to see them here!
               </div>
-            ))}
+            ) : (
+              colorHistory.map((entry) => (
+                <div key={entry.id} className="history-entry">
+                  <div className="history-time">{entry.timestamp}</div>
+                  <div className="history-colors">
+                    {entry.colors.map((c, i) => {
+                      const [r, g, b] = c;
+                      const hex = rgbToHex(r, g, b);
+                      const rgb = `rgb(${r}, ${g}, ${b})`;
+                      const text = format === "hex" ? hex : rgb;
+                      
+                      return (
+                        <div
+                          key={i}
+                          className="history-color-box"
+                          style={{ backgroundColor: rgb }}
+                          onClick={() => copyText(text)}
+                          title={text}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
