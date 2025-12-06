@@ -23,6 +23,7 @@ function App() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [flash, setFlash] = useState(false);
   const [copyToast, setCopyToast] = useState(null);
+  const [colorHistory, setColorHistory] = useState([]);
 
   const hiddenImgRef = useRef(null);
 
@@ -46,6 +47,12 @@ function App() {
         const colorThief = new ColorThief();
         const palette = colorThief.getPalette(imgElement, 6);
         setColors(palette);
+        // Add palette to history with timestamp
+        setColorHistory(prev => [{
+          id: Date.now(),
+          colors: palette,
+          timestamp: new Date().toLocaleTimeString()
+        }, ...prev]);
       } catch (error) {
         console.error("Error extracting colors:", error);
       }
@@ -177,6 +184,45 @@ function App() {
           </div>
         )}
       </div>
+      
+      {colorHistory.length > 0 && (
+        <div className="history-sidebar">
+          <div className="history-header">
+            <h3>Color History</h3>
+            <button 
+              className="clear-history-btn"
+              onClick={() => setColorHistory([])}
+            >
+              Clear All
+            </button>
+          </div>
+          <div className="history-list">
+            {colorHistory.map((entry) => (
+              <div key={entry.id} className="history-entry">
+                <div className="history-time">{entry.timestamp}</div>
+                <div className="history-colors">
+                  {entry.colors.map((c, i) => {
+                    const [r, g, b] = c;
+                    const hex = rgbToHex(r, g, b);
+                    const rgb = `rgb(${r}, ${g}, ${b})`;
+                    const text = format === "hex" ? hex : rgb;
+                    
+                    return (
+                      <div
+                        key={i}
+                        className="history-color-box"
+                        style={{ backgroundColor: rgb }}
+                        onClick={() => copyText(text)}
+                        title={text}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
