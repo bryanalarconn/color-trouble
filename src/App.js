@@ -48,11 +48,10 @@ function App() {
         const colorThief = new ColorThief();
         const palette = colorThief.getPalette(imgElement, 6);
         setColors(palette);
-        // Add palette to history with timestamp
+        // Add palette to history
         setColorHistory(prev => [{
           id: Date.now(),
-          colors: palette,
-          timestamp: new Date().toLocaleTimeString()
+          colors: palette
         }, ...prev]);
       } catch (error) {
         console.error("Error extracting colors:", error);
@@ -192,7 +191,11 @@ function App() {
           className="history-tab"
           onClick={() => setHistoryOpen(!historyOpen)}
         >
-          {historyOpen ? '→' : '←'} History
+          <div className="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
         <div className="history-content">
           <div className="history-header">
@@ -212,7 +215,6 @@ function App() {
             ) : (
               colorHistory.map((entry) => (
                 <div key={entry.id} className="history-entry">
-                  <div className="history-time">{entry.timestamp}</div>
                   <div className="history-colors">
                     {entry.colors.map((c, i) => {
                       const [r, g, b] = c;
