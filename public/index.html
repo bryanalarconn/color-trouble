@@ -2,42 +2,104 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0f7b61" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Color Trouble captures webcam frames and extracts dominant colors in real time."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
     <title>Color Trouble</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="app-shell">
+      <div class="flash" id="flash"></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      <header class="hero">
+        <p class="eyebrow">Webcam Color Analyzer</p>
+        <h1>Color Trouble</h1>
+        <p class="hero-text">
+          Capture a frame from your webcam and turn it into a dominant color
+          palette. Switch between HEX and RGB output, then click any swatch to
+          copy its value.
+        </p>
+      </header>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      <main class="layout">
+        <section class="panel camera-panel" aria-labelledby="camera-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Live Camera</p>
+              <h2 id="camera-heading">Frame Capture</h2>
+            </div>
+            <p class="panel-note" id="cameraStatus">Starting camera...</p>
+          </div>
+
+          <div class="camera-box">
+            <video
+              id="camera"
+              class="camera-feed"
+              autoplay
+              playsinline
+              muted
+            ></video>
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              Waiting for camera access.
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="capture-btn" id="captureButton" type="button">
+              Capture Colors
+            </button>
+
+            <div class="format-wrapper" aria-label="Color format">
+              <span class="format-label">Display format</span>
+              <div class="format-toggle" role="group" aria-label="Color format toggle">
+                <button
+                  class="format-button active"
+                  data-format="hex"
+                  type="button"
+                  aria-pressed="true"
+                >
+                  HEX
+                </button>
+                <button
+                  class="format-button"
+                  data-format="rgb"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  RGB
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <canvas id="captureCanvas" class="hidden-canvas"></canvas>
+        </section>
+
+        <section class="panel palette-panel" aria-labelledby="palette-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Detected Palette</p>
+              <h2 id="palette-heading">Dominant Colors</h2>
+            </div>
+            <p class="panel-note">Hover to preview, click to copy.</p>
+          </div>
+
+          <div class="palette-grid" id="paletteGrid">
+            <article class="empty-state">
+              <h3>No palette yet</h3>
+              <p>Capture a frame to generate six dominant colors from the camera image.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
