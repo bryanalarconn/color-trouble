@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --bg-1: #0a4f3d;
+  --bg-2: #0f7b61;
+  --bg-3: #90d150;
+  --surface: rgba(255, 255, 255, 0.14);
+  --surface-border: rgba(255, 255, 255, 0.24);
+  --text-main: #f8fff9;
+  --text-soft: rgba(248, 255, 249, 0.82);
+  --text-dark: #163728;
+  --shadow: 0 18px 40px rgba(4, 33, 24, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: "Outfit", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(231, 255, 124, 0.24), transparent 28%),
+    radial-gradient(circle at right top, rgba(88, 232, 193, 0.24), transparent 22%),
+    linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  padding: 32px clamp(18px, 4vw, 56px) 40px;
+}
+
+.hero {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.eyebrow,
+.panel-kicker {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #d9ffe6;
+}
+
+.hero h1,
+.panel h2,
+.empty-state h3 {
+  font-family: "DM Serif Display", Georgia, serif;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  line-height: 0.95;
+}
+
+.hero-text {
+  max-width: 62ch;
+  margin: 16px auto 0;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 22px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.panel {
+  border: 1px solid var(--surface-border);
+  border-radius: 30px;
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.panel-note {
+  margin: 0;
+  max-width: 240px;
+  text-align: right;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.camera-box {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(6, 32, 24, 0.48);
+}
+
+.camera-feed,
+.camera-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+}
+
+.camera-feed {
+  display: block;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-soft);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.camera-placeholder.is-hidden {
+  display: none;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: end;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.capture-btn {
+  min-height: 50px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: linear-gradient(180deg, #f2ff8b 0%, #cfe95a 100%);
+  box-shadow: 0 10px 24px rgba(242, 255, 139, 0.25);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.capture-btn:hover,
+.format-button:hover,
+.swatch:hover {
+  transform: translateY(-1px);
+}
+
+.capture-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.format-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.format-label {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.format-toggle {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.format-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: var(--text-main);
+  background: transparent;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.format-button.active {
+  background: #ffffff;
+  color: var(--text-dark);
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 34px 24px;
+  border-radius: 24px;
+  text-align: center;
+  color: var(--text-soft);
+  background: rgba(4, 26, 20, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+}
+
+.empty-state h3 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+  color: var(--text-main);
+}
+
+.empty-state p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.swatch {
+  position: relative;
+  min-height: 140px;
+  border: 0;
+  border-radius: 24px;
+  padding: 18px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.swatch:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 2px;
+}
+
+.swatch-content {
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 14px;
+}
+
+.swatch-label {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.swatch-value {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  font-size: 0.95rem;
+}
+
+.swatch:hover .swatch-value,
+.swatch:focus-visible .swatch-value {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flash {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: #ffffff;
+  transition: opacity 0.16s ease-out;
+  z-index: 10;
+}
+
+.flash.is-visible {
+  opacity: 0.82;
+}
+
+.hidden-canvas {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-note {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 18px;
+  }
+
+  .camera-box,
+  .camera-feed,
+  .camera-placeholder {
+    min-height: 320px;
+  }
+
+  .palette-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-row,
+  .panel-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .format-wrapper {
+    align-items: stretch;
+  }
+}
