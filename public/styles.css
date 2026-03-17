@@ -78,6 +78,29 @@ button {
   line-height: 1.7;
 }
 
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 24px rgba(4, 33, 24, 0.18);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.hero-link:hover,
+.hero-link:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);

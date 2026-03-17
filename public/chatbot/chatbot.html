@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Static chatbot history page showing previous conversations."
+    />
+    <link rel="icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="chatbot.css" />
+    <title>Chatbot History</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Conversation Archive</p>
+          <h1>Chatbot History</h1>
+        </div>
+        <a class="back-link" href="../index.html">Back to Color Trouble</a>
+      </header>
+
+      <main class="dashboard">
+        <aside class="sidebar" aria-labelledby="history-list-heading">
+          <div class="sidebar-header">
+            <p class="section-label">Saved Threads</p>
+            <h2 id="history-list-heading">Recent Conversations</h2>
+          </div>
+
+          <nav class="history-list" aria-label="Conversation history">
+            <a class="history-card active" href="#conversation-one">
+              <span class="history-title">Design Help</span>
+              <span class="history-preview">How should the landing page hero look?</span>
+              <span class="history-time">Today, 2:15 PM</span>
+            </a>
+
+            <a class="history-card" href="#conversation-two">
+              <span class="history-title">Bug Fix Notes</span>
+              <span class="history-preview">Why is the mobile layout clipping?</span>
+              <span class="history-time">Yesterday, 7:42 PM</span>
+            </a>
+
+            <a class="history-card" href="#conversation-three">
+              <span class="history-title">Project Ideas</span>
+              <span class="history-preview">Give me three features to build next.</span>
+              <span class="history-time">Mar 14, 10:03 AM</span>
+            </a>
+
+            <a class="history-card" href="#conversation-four">
+              <span class="history-title">Class Review</span>
+              <span class="history-preview">Summarize semantic HTML best practices.</span>
+              <span class="history-time">Mar 12, 1:26 PM</span>
+            </a>
+          </nav>
+        </aside>
+
+        <section class="conversation-panel" aria-labelledby="conversation-heading">
+          <div class="conversation-header">
+            <p class="section-label">Opened Thread</p>
+            <h2 id="conversation-heading">Design Help</h2>
+            <p class="conversation-meta">
+              Static HTML/CSS preview of a chatbot conversation history page.
+            </p>
+          </div>
+
+          <div class="conversation-feed" id="conversation-one">
+            <article class="message user-message">
+              <p class="message-role">You</p>
+              <p>
+                I want the homepage to feel more modern, but I still want it to
+                be simple and easy to grade.
+              </p>
+            </article>
+
+            <article class="message bot-message">
+              <p class="message-role">Chatbot</p>
+              <p>
+                Start with a bold hero section, one strong accent color, and a
+                clean two-column layout so it feels polished without becoming
+                complicated.
+              </p>
+            </article>
+
+            <article class="message user-message">
+              <p class="message-role">You</p>
+              <p>
+                Should I include cards for sections like features, progress,
+                and recent work?
+              </p>
+            </article>
+
+            <article class="message bot-message">
+              <p class="message-role">Chatbot</p>
+              <p>
+                Yes. A small card grid helps organize content and makes the
+                page easier to scan on both desktop and mobile.
+              </p>
+            </article>
+
+            <article class="message user-message">
+              <p class="message-role">You</p>
+              <p>
+                Can I keep the conversation history visible on the left side?
+              </p>
+            </article>
+
+            <article class="message bot-message">
+              <p class="message-role">Chatbot</p>
+              <p>
+                Definitely. A sidebar for older conversations with the active
+                thread shown on the right is a strong dashboard pattern for
+                this kind of page.
+              </p>
+            </article>
+          </div>
+
+          <div class="conversation-preview-grid">
+            <section class="mini-thread" id="conversation-two">
+              <h3>Bug Fix Notes</h3>
+              <p>
+                Small spacing issues usually come from fixed widths, missing
+                wrapping rules, or large padding on mobile.
+              </p>
+            </section>
+
+            <section class="mini-thread" id="conversation-three">
+              <h3>Project Ideas</h3>
+              <p>
+                Add search, favorite chats, and a conversation detail view to
+                make the archive feel more complete.
+              </p>
+            </section>
+
+            <section class="mini-thread" id="conversation-four">
+              <h3>Class Review</h3>
+              <p>
+                Use headings in order, label form controls, and keep semantic
+                landmarks like header, main, nav, and section.
+              </p>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
