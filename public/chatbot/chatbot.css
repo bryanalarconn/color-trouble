@@ -19,7 +19,7 @@
 html {
   scroll-behavior: smooth;
 }
-
+/*this will be put in the whole web*/
 body {
   margin: 0;
   min-height: 100vh;
@@ -29,17 +29,19 @@ body {
     radial-gradient(circle at top left, rgba(194, 77, 44, 0.16), transparent 28%),
     linear-gradient(180deg, #fbf6ef 0%, var(--bg) 100%);
 }
-
+/*this will be applied to the a which is the title of the conversation */
 a {
-  color: inherit;
+  color: green;
 }
 
+/*call the 'page shell' class and give it some style (this is the main style)*/
 .page-shell {
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 2rem 0 3rem;
 }
 
+/*call the 'topbar ("Chatbot History")' header and give it some style*/
 .topbar {
   display: flex;
   align-items: center;
