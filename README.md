@@ -69,11 +69,7 @@ This project is optimized for deployment on Vercel, which provides:
 - CI/CD integration with GitHub  
 - Global CDN performance  
 
-Deploy:
-1. Push the project to GitHub.
-2. Visit https://vercel.com/new
-3. Select the repository.
-4. Deploy.
+
 
 ## 6. Application Architecture
 
@@ -95,14 +91,6 @@ src/
 5. A palette of six RGB values is returned.
 6. Values are formatted and displayed interactivity.
 
-## 8. Future Enhancements
-
-- Tooltip-based feedback
-- Continuous real-time sampling
-- Color naming dictionaries
-- Palette export
-- Accessibility improvements
-- Automated testing
 
 ## 9. License
 
